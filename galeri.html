@@ -3,161 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Kita ❤️</title>
+    <title>Galeri Kenangan ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         :root {
             --pink-soft: #ffcad4;
             --pink-bold: #f7a1c0;
-            --text-dark: #333333;
-            --white-bg: #ffffff;
+            --text-dark: #4a4e69;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--white-bg); /* Konsep dominan putih yang elegan */
             color: var(--text-dark);
             margin: 0;
             padding: 0;
             text-align: center;
+            background-color: #fafafa;
+            background-image: 
+                radial-gradient(circle at 50% 0%, #fff0f3 0%, transparent 60%),
+                url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f7a1c0' fill-opacity='0.06' fill-rule='evenodd'%3E%3Ccircle cx='4' cy='4' r='1.5'/%3E%3Ccircle cx='16' cy='16' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+            min-height: 100vh;
         }
 
-        /* Header Minimalis */
         header {
-            padding: 40px 20px 20px 20px;
-            background: var(--white-bg);
-            position: relative;
+            padding: 40px 20px 20px;
         }
-
-        .btn-back {
-            position: absolute;
-            top: 30px;
-            left: 20px;
-            text-decoration: none;
-            color: var(--pink-bold);
-            font-weight: 600;
-            background: #fff9fa;
-            padding: 8px 15px;
-            border-radius: 20px;
-            border: 1px solid var(--pink-soft);
-            transition: 0.3s;
-        }
-
-        .btn-back:hover { background: var(--pink-soft); color: white; }
 
         h1 { 
             font-family: 'Pacifico', cursive; 
             color: var(--pink-bold); 
-            font-size: 2.5rem; 
-            margin: 20px 0 5px 0; 
+            font-size: 2.2rem; 
+            margin: 0 0 5px 0; 
+        }
+        
+        p.subtitle { 
+            font-size: 1rem; 
+            color: #888; 
+            margin: 0; 
+            font-style: italic;
         }
 
-        p.subtitle {
-            color: #888;
-            font-size: 0.95rem;
-            margin-bottom: 40px;
+        .container { 
+            padding: 20px; 
+            max-width: 600px; 
+            margin: auto; 
         }
 
-        /* Grid Galeri Elegan */
-        .gallery-container {
-            padding: 0 20px 50px 20px;
-            max-width: 600px;
-            margin: auto;
+        /* --- DESAIN GRID GALERI --- */
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* Membuat 2 kolom sejajar */
             gap: 15px;
-        }
-
-        .gallery-item {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(247, 161, 192, 0.2);
-        }
-
-        /* Lightbox (Foto Membesar) */
-        #lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        #lightbox img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .close-btn {
             margin-top: 20px;
-            padding: 10px 25px;
-            background: var(--pink-bold);
-            color: white;
-            border: none;
+        }
+
+        .photo-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(247, 161, 192, 0.2);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px; /* Tinggi foto dibuat seragam */
+            object-fit: cover; /* Biar foto tidak gepeng */
+            border-radius: 12px;
+            display: block;
+        }
+
+        .caption {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        /* Tombol Kembali */
+        .btn-back {
+            background: white;
+            color: var(--pink-bold);
+            border: 1px solid var(--pink-soft);
+            padding: 12px 25px;
             border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
-            font-family: 'Quicksand', sans-serif;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 40px;
+            margin-bottom: 30px;
         }
 
+        .btn-back:hover { 
+            background: var(--pink-soft); 
+            color: white;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="index.html" class="btn-back">⬅ Kembali</a>
-    <h1>Our Gallery</h1>
-    <p class="subtitle">Setiap foto punya cerita cantiknya sendiri.</p>
+    <h1>Bingkai Kenangan 📸</h1>
+    <p class="subtitle">Setiap jepretan adalah cerita tentang kita.</p>
 </header>
 
-<div class="gallery-container">
-    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 1">
-    
-    <img src="https://images.unsplash.com/photo-1522673607200-164883eecd4c?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 2">
-    
-    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 3">
-    
-    <img src="https://images.unsplash.com/photo-1606248897732-2c5ffe759c04?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 4">
-    
-    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 5">
-    
-    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 6">
+<div class="container">
+    <div class="gallery-grid">
+        
+        <div class="photo-card">
+            <img src="foto1.jpg" alt="Kenangan 1">
+            <div class="caption">My World ✨</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto2.jpg" alt="Kenangan 2">
+            <div class="caption">My World ❤️</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto3.jpg" alt="Kenangan 3">
+            <div class="caption">My World 🌍</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto4.jpg" alt="Kenangan 4">
+            <div class="caption">My World</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto5.jpg" alt="Kenangan 5">
+            <div class="caption">My World</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto6.jpg" alt="Kenangan 6">
+            <div class="caption">My World</div>
+        </div>
+        
+    </div>
+
+    <a href="index.html" class="btn-back">⬅️ Kembali ke Halaman Utama</a>
 </div>
-
-<div id="lightbox">
-    <img id="lightbox-img" src="" alt="Foto Membesar">
-    <button class="close-btn" onclick="closeLightbox()">Tutup Foto</button>
-</div>
-
-<script>
-    // Fungsi untuk membuka foto agar full screen
-    function openLightbox(imageSrc) {
-        document.getElementById('lightbox-img').src = imageSrc;
-        document.getElementById('lightbox').style.display = 'flex';
-    }
-
-    // Fungsi untuk menutup foto
-    function closeLightbox() {
-        document.getElementById('lightbox').style.display = 'none';
-    }
-</script>
 
 </body>
 </html>
