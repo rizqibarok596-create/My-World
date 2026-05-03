@@ -13,12 +13,7 @@
             --text-dark: #4a4e69;
         }
 
-        /* Menambahkan class locked agar saat layar pembuka muncul, 
-           halaman tidak bisa di-scroll ke bawah.
-        */
-        body.locked {
-            overflow: hidden;
-        }
+        body.locked { overflow: hidden; }
 
         body {
             font-family: 'Quicksand', sans-serif;
@@ -30,7 +25,7 @@
             text-align: center;
         }
 
-        /* --- LAYAR PEMBUKA (WELCOME SCREEN) --- */
+        /* --- LAYAR PEMBUKA --- */
         .welcome-screen {
             position: fixed;
             top: 0;
@@ -42,26 +37,14 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 1.5s ease, visibility 1.5s ease;
-        }
-
-        .welcome-content {
-            text-align: center;
-            padding: 20px;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
         }
 
         .welcome-content h2 {
             font-family: 'Pacifico', cursive;
             color: var(--text-dark);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        .welcome-content p {
-            color: #888;
+            font-size: 2.2rem;
             margin-bottom: 30px;
-            font-size: 1.1rem;
         }
 
         /* Efek Hati Berjatuhan */
@@ -73,29 +56,18 @@
             z-index: 999;
             user-select: none;
         }
-        @keyframes fall {
-            to { transform: translateY(105vh); }
-        }
+        @keyframes fall { to { transform: translateY(105vh); } }
 
         header {
             padding: 60px 20px;
             background: var(--white-clean);
             border-radius: 0 0 40px 40px;
-            box-shadow: 0 10px 30px rgba(255, 175, 204, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
 
         h1 { font-family: 'Pacifico', cursive; color: var(--pink-bold); font-size: 2.2rem; margin: 0; }
 
         .container { padding: 20px; max-width: 450px; margin: auto; }
-
-        .countdown-box {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            margin: 20px 0;
-            border: 1px solid var(--pink-soft);
-        }
-        .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); }
 
         .card {
             background: white;
@@ -106,35 +78,6 @@
             border: 1px solid rgba(255, 175, 204, 0.2);
         }
 
-        /* Tombol Musik */
-        .music-control {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1000;
-        }
-        .music-btn {
-            background: var(--pink-bold);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(247, 161, 192, 0.4);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        #love-text { display: block; min-height: 60px; margin-bottom: 15px; font-style: italic; }
         .btn-main {
             background: var(--pink-bold);
             color: white;
@@ -147,36 +90,24 @@
             text-decoration: none;
             display: inline-block;
         }
-        
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(247, 161, 192, 0.6);
-        }
+
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(247, 161, 192, 0.4); }
 
         ul { text-align: left; padding-left: 15px; }
         li { margin-bottom: 10px; list-style: '✨ '; }
+        
+        #love-text { display: block; min-height: 40px; margin-bottom: 15px; font-style: italic; }
 
+        .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); margin-top: 10px; }
     </style>
 </head>
 <body class="locked">
 
 <div id="welcome-screen" class="welcome-screen">
     <div class="welcome-content">
-        <h2>Hi, Sayang...</h2>
-        <p>Ada sesuatu yang spesial buat kamu.</p>
+        <h2>Hi, Sayang... ❤️</h2>
         <button class="btn-main" onclick="bukaKejutan()">Buka Pesan ✨</button>
     </div>
-</div>
-
-<audio id="mySong" loop preload="auto">
-    <source src="lagu.mp3" type="audio/mpeg">
-    Browser kamu tidak mendukung pemutar musik.
-</audio>
-
-<div class="music-control">
-    <button class="music-btn" onclick="toggleMusic()" id="btnMusic">
-        <span id="music-icon">▶️</span> <span id="music-status">Play Music</span>
-    </button>
 </div>
 
 <header>
@@ -185,22 +116,19 @@
 </header>
 
 <div class="container">
-    <div class="countdown-box">
+    
+    <div class="card">
+        <h3 style="margin-top:0; color: var(--pink-bold);">🎵 Lagu Kita</h3>
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6inhRoBQtHKX0O8ynOjzDi?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="card">
         <p>Menuju Hari Spesial Kita 🥂</p>
         <div id="timer" class="timer">Loading...</div>
     </div>
 
-    <div class="card" style="text-align: center;">
-        <h3 style="margin-top:0; color: var(--pink-bold);">📸 Our Moments</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 20px; color: #888;">Kumpulan memori manis kita ada di sini...</p>
-        <a href="galeri.html" style="text-decoration: none;">
-            <button class="btn-main" style="width: 100%;">Buka Galeri Kenangan ✨</button>
-        </a>
-    </div>
-
     <div class="card">
         <span id="love-text">Klik tombol buat baca pesan hari ini..</span>
-        <br>
         <button class="btn-main" onclick="generateLove()">Baca Pesan ✨</button>
     </div>
 
@@ -212,43 +140,19 @@
             <li>Nge-teh bareng pas hujan 🌧️</li>
         </ul>
     </div>
-
-    <div class="card">
-        <h3 style="color: var(--pink-bold)">📜 Little Reminders</h3>
-        <ul>
-            <li>Jangan lupa istirahat kalau sudah capek.</li>
-            <li>Kabari aku kalau sudah sampai ya sayang.</li>
-            <li>Komunikasi itu kunci, cerita apa aja ke aku.</li>
-            <li>Aku selalu bangga punya kamu. ❤️</li>
-        </ul>
-    </div>
 </div>
 
-<footer style="padding: 40px; font-size: 0.7rem; opacity: 0.6;">
+<footer style="padding: 40px; font-size: 0.7rem; opacity: 0.4;">
     Created with ❤️ for You | 2026
 </footer>
 
 <script>
-    // --- LOGIKA LAYAR PEMBUKA ---
     function bukaKejutan() {
         const welcomeScreen = document.getElementById("welcome-screen");
-        
-        // 1. Putar musik
-        if (song.paused) {
-            toggleMusic();
-        }
-        
-        // 2. Buat layar pembuka memudar
         welcomeScreen.style.opacity = "0";
         welcomeScreen.style.visibility = "hidden";
-        
-        // 3. Buka kunci scroll pada body
         document.body.classList.remove("locked");
-        
-        // 4. Hapus layar pembuka sepenuhnya setelah animasi selesai (1.5 detik)
-        setTimeout(() => {
-            welcomeScreen.style.display = "none";
-        }, 1500);
+        setTimeout(() => { welcomeScreen.style.display = "none"; }, 1200);
     }
 
     const messages = [
@@ -256,8 +160,6 @@
         "Terima kasih sudah memilihku untuk menemanimu.",
         "Semangat hari ini ya! Senyummu itu duniaku.",
         "Aku sayang kamu lebih dari kata-kata yang bisa kutulis.",
-        "Ingat, ada aku yang selalu mendukung mimpimu.",
-        "You're not just my partner, you're my best friend. 🌍",
         "Jangan lupa minum air putih hari ini, oke?"
     ];
 
@@ -267,6 +169,7 @@
         textElement.innerText = randomMsg;
     }
 
+    // Timer Countdown
     const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
     setInterval(function() {
         const now = new Date().getTime();
@@ -277,6 +180,7 @@
         document.getElementById("timer").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit!";
     }, 1000);
 
+    // Hati Berjatuhan
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -288,26 +192,11 @@
         setTimeout(() => { heart.remove(); }, 5000);
     }
     setInterval(createHeart, 500);
+</script>
 
-    // Fungsi Kontrol Musik
-    const song = document.getElementById("mySong");
-    const musicBtn = document.getElementById("btnMusic");
-    const musicIcon = document.getElementById("music-icon");
-    const musicStatus = document.getElementById("music-status");
-
-    function toggleMusic() {
-        if (song.paused) {
-            song.play().then(() => {
-                musicIcon.innerText = "⏸️";
-                musicStatus.innerText = "Pause Music";
-                musicBtn.style.animation = "none";
-            }).catch(error => {
-                console.log("Gagal memutar lagu: ", error);
-            });
-        } else {
-            song.pause();
-            musicIcon.innerText = "▶️";
-            musicStatus.innerText = "Play Music";
+</body>
+</html>
+innerText = "Play Music";
         }
     }
 </script>
