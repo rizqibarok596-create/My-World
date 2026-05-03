@@ -3,119 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My World</title>
+    <title>Our Love Story ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        /* Desain Background: Putih, Minimalis, Elegan */
+        :root {
+            --pink-soft: #ffcad4;
+            --pink-bold: #f7a1c0;
+            --white-clean: #ffffff;
+            --text-dark: #4a4e69;
+        }
+
         body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--white-clean);
+            color: var(--text-dark);
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #ffffff; 
-            font-family: 'Georgia', serif; /* Font klasik yang elegan */
-            color: #333333;
+            overflow-x: hidden;
             text-align: center;
         }
 
-        /* Kotak Konten dengan bayangan sangat lembut */
-        .container {
-            max-width: 600px;
-            padding: 50px 30px;
-            background: #ffffff;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        /* Efek Hati Berjatuhan */
+        .heart {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 999;
+            user-select: none;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh); }
+        }
+
+        header {
+            padding: 60px 20px;
+            background: var(--white-clean);
+            border-radius: 0 0 40px 40px;
+            box-shadow: 0 10px 30px rgba(255, 175, 204, 0.1);
+        }
+
+        h1 { font-family: 'Pacifico', cursive; color: var(--pink-bold); font-size: 2.2rem; margin: 0; }
+
+        .container { padding: 20px; max-width: 450px; margin: auto; }
+
+        .countdown-box {
+            background: white;
+            padding: 20px;
             border-radius: 20px;
-            
-            /* Animasi perlahan muncul (Fade In) */
-            opacity: 0;
-            animation: fadeIn 2.5s forwards;
+            margin: 20px 0;
+            border: 1px solid var(--pink-soft);
+        }
+        .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); }
+
+        .card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 175, 204, 0.2);
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        /* Tombol Musik */
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
         }
-
-        h1 {
-            font-weight: normal;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            color: #444;
-        }
-
-        p {
-            line-height: 1.8;
-            margin-bottom: 30px;
-            color: #666;
-            font-size: 1.1em;
-        }
-
-        /* Desain Tombol Play */
-        .btn-play {
-            background-color: #fdfdfd;
-            border: 1px solid #ddd;
-            color: #555;
-            padding: 12px 35px;
-            font-size: 16px;
-            font-family: inherit;
-            cursor: pointer;
+        .music-btn {
+            background: var(--pink-bold);
+            color: white;
+            border: none;
+            padding: 12px 20px;
             border-radius: 30px;
-            transition: all 0.4s ease;
-            letter-spacing: 1.5px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(247, 161, 192, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        .btn-play:hover {
-            background-color: #f0f0f0;
-            border-color: #bbb;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        #love-text { display: block; min-height: 60px; margin-bottom: 15px; font-style: italic; }
+        .btn-main {
+            background: var(--pink-bold);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        /* Menyembunyikan pemutar musik bawaan */
-        audio {
-            display: none;
-        }
+        ul { text-align: left; padding-left: 15px; }
+        li { margin-bottom: 10px; list-style: '✨ '; }
 
-        /* Menyembunyikan pesan sebelum tombol diklik */
-        #pesan-rahasia {
-            display: none;
-            margin-top: 30px;
-            animation: fadeIn 2s forwards;
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Hello, My World</h1>
-        <p>Ada sesuatu yang ingin aku sampaikan padamu.</p>
-        
-        <button class="btn-play" id="tombolBuka" onclick="bukaPesan()">Buka Pesan</button>
-        
-        <div id="pesan-rahasia">
-            <p><i>(Tulis kata-kata romantismu di sini. Ceritakan betapa berartinya dia untukmu...)</i></p>
-        </div>
+<audio id="mySong" loop preload="auto">
+    <source src="lagu.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar musik.
+</audio>
+
+<div class="music-control">
+    <button class="music-btn" onclick="toggleMusic()" id="btnMusic">
+        <span id="music-icon">▶️</span> <span id="music-status">Play Music</span>
+    </button>
+</div>
+
+<header>
+    <h1>Hi, Sayang! ❤️</h1>
+    <p>Setiap detik bersamamu adalah anugerah.</p>
+</header>
+
+<div class="container">
+    <div class="countdown-box">
+        <p>Menuju Hari Spesial Kita 🥂</p>
+        <div id="timer" class="timer">Loading...</div>
     </div>
 
-    <audio id="musikLatar" loop>
-        <source src="lagu.mp3" type="audio/mpeg">
-    </audio>
+    <div class="card" style="text-align: center;">
+        <h3 style="margin-top:0; color: var(--pink-bold);">📸 Our Moments</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 20px; color: #888;">Kumpulan memori manis kita ada di sini...</p>
+        <a href="galeri.html" style="text-decoration: none;">
+            <button class="btn-main" style="width: 100%;">Buka Galeri Kenangan ✨</button>
+        </a>
+    </div>
 
-    <script>
-        // Logika Javascript agar tombol berfungsi
-        function bukaPesan() {
-            var musik = document.getElementById("musikLatar");
-            var tombol = document.getElementById("tombolBuka");
-            var pesan = document.getElementById("pesan-rahasia");
-            
-            // 1. Putar lagu
-            musik.play(); 
-            // 2. Hilangkan tombol
-            tombol.style.display = "none"; 
-            // 3. Munculkan pesan rahasia
-            pesan.style.display = "block"; 
+    <div class="card">
+        <span id="love-text">Klik tombol buat baca pesan hari ini..</span>
+        <br>
+        <button class="btn-main" onclick="generateLove()">Baca Pesan ✨</button>
+    </div>
+
+    <div class="card">
+        <h3 style="color: var(--pink-bold)">📅 Rencana Kita</h3>
+        <ul>
+            <li>Eksplor cafe minimalis baru ☕</li>
+            <li>Movie marathon di rumah 🍿</li>
+            <li>Nge-teh bareng pas hujan 🌧️</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3 style="color: var(--pink-bold)">📜 Little Reminders</h3>
+        <ul>
+            <li>Jangan lupa istirahat kalau sudah capek.</li>
+            <li>Kabari aku kalau sudah sampai ya sayang.</li>
+            <li>Komunikasi itu kunci, cerita apa aja ke aku.</li>
+            <li>Aku selalu bangga punya kamu. ❤️</li>
+        </ul>
+    </div>
+</div>
+
+<footer style="padding: 40px; font-size: 0.7rem; opacity: 0.6;">
+    Created with ❤️ for You | 2026
+</footer>
+
+<script>
+    const messages = [
+        "Kamu adalah alasan aku selalu ingin jadi lebih baik. ❤️",
+        "Terima kasih sudah memilihku untuk menemanimu.",
+        "Semangat hari ini ya! Senyummu itu duniaku.",
+        "Aku sayang kamu lebih dari kata-kata yang bisa kutulis.",
+        "Ingat, ada aku yang selalu mendukung mimpimu.",
+        "You're not just my partner, you're my best friend. 🌍",
+        "Jangan lupa minum air putih hari ini, oke?"
+    ];
+
+    function generateLove() {
+        const textElement = document.getElementById('love-text');
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        textElement.innerText = randomMsg;
+    }
+
+    const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
+    setInterval(function() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("timer").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit!";
+    }, 1000);
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        heart.style.opacity = Math.random();
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 5000);
+    }
+    setInterval(createHeart, 500);
+
+    // Fungsi Kontrol Musik
+    const song = document.getElementById("mySong");
+    const musicBtn = document.getElementById("btnMusic");
+    const musicIcon = document.getElementById("music-icon");
+    const musicStatus = document.getElementById("music-status");
+
+    function toggleMusic() {
+        if (song.paused) {
+            song.play().then(() => {
+                musicIcon.innerText = "⏸️";
+                musicStatus.innerText = "Pause Music";
+                musicBtn.style.animation = "none";
+            }).catch(error => {
+                console.log("Gagal memutar lagu: ", error);
+            });
+        } else {
+            song.pause();
+            musicIcon.innerText = "▶️";
+            musicStatus.innerText = "Play Music";
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
