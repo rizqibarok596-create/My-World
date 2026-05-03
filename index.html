@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--white-clean); /* Background putih agar bersih dan elegan */
+            background-color: var(--white-clean);
             color: var(--text-dark);
             margin: 0;
             padding: 0;
@@ -57,7 +57,7 @@
         }
         .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); }
 
-        /* Card Style - Dibuat clean dan minimalis */
+        /* Card Style */
         .card {
             background: white;
             padding: 30px 25px;
@@ -81,6 +81,7 @@
             font-size: 20px;
             box-shadow: 0 5px 15px rgba(247, 161, 192, 0.4);
             z-index: 1000;
+            cursor: pointer;
         }
 
         /* Love Message */
@@ -110,13 +111,13 @@
 <body>
 
 <audio id="mySong" loop>
-    <source src="https://music.youtube.com/watch?v=7mhuPowZBNQ&si=uO7Cw8LkenMmaiDo" type="audio/mpeg">
+    <source src="https://drive.google.com/uc?export=download&id=13xuUhVt_GAO3viZmjFigwTvgIqKScZ3W" type="audio/mpeg">
 </audio>
 <button class="music-btn" onclick="toggleMusic()">🎵</button>
 
 <header>
     <h1>Hi, Sayang! ❤️</h1>
-    <p>Every day is a gift with you.</p>
+    <p>Setiap detik bersamamu adalah anugerah.</p>
 </header>
 
 <div class="container">
@@ -126,8 +127,8 @@
     </div>
 
     <div class="card" style="text-align: center;">
-        <h3 style="margin-top:0; color: var(--pink-bold);">📸 Our Beautiful Moments</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 20px; color: #888;">Ada banyak memori lucu dan seru yang udah kita lewati. Aku kumpulin semuanya di sini, spesial buat kamu.</p>
+        <h3 style="margin-top:0; color: var(--pink-bold);">📸 Our Moments</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 20px; color: #888;">Kumpulan memori manis kita ada di sini...</p>
         <a href="galeri.html" style="text-decoration: none;">
             <button class="btn-main" style="width: 100%;">Buka Galeri Kenangan ✨</button>
         </a>
@@ -140,39 +141,39 @@
     </div>
 
     <div class="card">
-        <h3 style="color: var(--pink-bold)">📅 Next Date Ideas</h3>
+        <h3 style="color: var(--pink-bold)">📅 Rencana Kita</h3>
         <ul>
-            <li>Nyobain cafe baru yang estetik ☕</li>
-            <li>Masak bareng di rumah 🍳</li>
-            <li>Cari sunset bareng 🌅</li>
+            <li>Eksplor cafe minimalis baru ☕</li>
+            <li>Movie marathon di rumah 🍿</li>
+            <li>Nge-teh bareng pas hujan 🌧️</li>
         </ul>
     </div>
 
     <div class="card">
         <h3 style="color: var(--pink-bold)">📜 Little Reminders</h3>
         <ul>
-            <li>Jangan lupa minum air putih yang banyak!</li>
-            <li>Kabari aku kalau kamu lagi ngerasa capek ya.</li>
-            <li>Komunikasi itu nomor satu, jangan dipendem sendiri.</li>
-            <li>I'm always proud of you, no matter what.</li>
+            <li>Jangan lupa istirahat kalau sudah capek.</li>
+            <li>Kabari aku kalau sudah sampai ya sayang.</li>
+            <li>Komunikasi itu kunci, cerita apa aja ke aku.</li>
+            <li>Aku selalu bangga punya kamu. ❤️</li>
         </ul>
     </div>
 </div>
 
 <footer style="padding: 40px; font-size: 0.7rem; opacity: 0.6;">
-    Forever & Always with You | 2026
+    Created with ❤️ for You | 2026
 </footer>
 
 <script>
-    // 1. Pesan Romantis Variasi
+    // 1. Variasi Pesan
     const messages = [
-        "Kamu itu alasan aku semangat bangun tiap pagi. ❤️",
-        "Makasih ya udah jadi bagian paling indah di hidupku.",
-        "Don't forget to smile today, it looks beautiful on you!",
-        "Lagi apa? Aku cuma mau bilang kalau aku sayang banget sama kamu.",
-        "Semangat ya kerjanya! Nanti kita makan enak bareng.",
-        "You are my favorite human in the whole world! 🌍",
-        "Kalau dunia lagi berisik, inget ya, aku bakal selalu jadi tempat teduhmu."
+        "Kamu adalah alasan aku selalu ingin jadi lebih baik. ❤️",
+        "Terima kasih sudah memilihku untuk menemanimu.",
+        "Semangat hari ini ya! Senyummu itu duniaku.",
+        "Aku sayang kamu lebih dari kata-kata yang bisa kutulis.",
+        "Ingat, ada aku yang selalu mendukung mimpimu.",
+        "You're not just my partner, you're my best friend. 🌍",
+        "Jangan lupa minum air putih hari ini, oke?"
     ];
 
     function generateLove() {
@@ -181,7 +182,7 @@
         textElement.innerText = randomMsg;
     }
 
-    // 2. Countdown Anniversary (Ganti tanggal di sini)
+    // 2. Countdown (Ganti tanggal di sini)
     const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
 
     setInterval(function() {
@@ -190,11 +191,10 @@
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        
-        document.getElementById("timer").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit lagi!";
+        document.getElementById("timer").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit!";
     }, 1000);
 
-    // 3. Efek Hati Berjatuhan
+    // 3. Efek Hati
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -207,10 +207,14 @@
     }
     setInterval(createHeart, 500);
 
-    // 4. Music Toggle
+    // 4. Kontrol Musik
     const song = document.getElementById("mySong");
     function toggleMusic() {
-        return song.paused ? song.play() : song.pause();
+        if (song.paused) {
+            song.play();
+        } else {
+            song.pause();
+        }
     }
 </script>
 
