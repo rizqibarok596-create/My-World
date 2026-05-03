@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #fff9fa;
+            background-color: var(--white-clean); /* Background putih agar bersih dan elegan */
             color: var(--text-dark);
             margin: 0;
             padding: 0;
@@ -57,30 +57,15 @@
         }
         .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); }
 
-        /* Card Style */
+        /* Card Style - Dibuat clean dan minimalis */
         .card {
             background: white;
-            padding: 25px;
+            padding: 30px 25px;
             border-radius: 25px;
             margin-bottom: 25px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.03);
             border: 1px solid rgba(255, 175, 204, 0.2);
         }
-
-        /* Foto Grid */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .photo-grid img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s;
-        }
-        .photo-grid img:active { transform: scale(0.95); }
 
         /* Music Button */
         .music-btn {
@@ -109,6 +94,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 161, 192, 0.3);
         }
 
         ul { text-align: left; padding-left: 15px; }
@@ -134,16 +125,17 @@
         <div id="timer" class="timer">Loading...</div>
     </div>
 
-    <div class="card">
-        <h3 style="margin-top:0">📸 Our Moments</h3>
-        <div class="photo-grid">
-            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400" alt="Moment 1">
-            <img src="https://images.unsplash.com/photo-1522673607200-164883eecd4c?q=80&w=400" alt="Moment 2">
-        </div>
+    <div class="card" style="text-align: center;">
+        <h3 style="margin-top:0; color: var(--pink-bold);">📸 Our Beautiful Moments</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 20px; color: #888;">Ada banyak memori lucu dan seru yang udah kita lewati. Aku kumpulin semuanya di sini, spesial buat kamu.</p>
+        <a href="galeri.html" style="text-decoration: none;">
+            <button class="btn-main" style="width: 100%;">Buka Galeri Kenangan ✨</button>
+        </a>
     </div>
 
     <div class="card">
         <span id="love-text">Klik tombol buat baca pesan hari ini..</span>
+        <br>
         <button class="btn-main" onclick="generateLove()">Baca Pesan ✨</button>
     </div>
 
