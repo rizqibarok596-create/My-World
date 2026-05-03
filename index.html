@@ -47,7 +47,6 @@
 
         .container { padding: 20px; max-width: 450px; margin: auto; }
 
-        /* Countdown Style */
         .countdown-box {
             background: white;
             padding: 20px;
@@ -57,7 +56,6 @@
         }
         .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); }
 
-        /* Card Style */
         .card {
             background: white;
             padding: 30px 25px;
@@ -67,24 +65,34 @@
             border: 1px solid rgba(255, 175, 204, 0.2);
         }
 
-        /* Music Button */
-        .music-btn {
+        /* Tombol Musik yang Lebih Jelas */
+        .music-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+        }
+        .music-btn {
             background: var(--pink-bold);
             color: white;
             border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 20px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
             box-shadow: 0 5px 15px rgba(247, 161, 192, 0.4);
-            z-index: 1000;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        /* Love Message */
         #love-text { display: block; min-height: 60px; margin-bottom: 15px; font-style: italic; }
         .btn-main {
             background: var(--pink-bold);
@@ -98,10 +106,6 @@
             text-decoration: none;
             display: inline-block;
         }
-        .btn-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(247, 161, 192, 0.3);
-        }
 
         ul { text-align: left; padding-left: 15px; }
         li { margin-bottom: 10px; list-style: '✨ '; }
@@ -110,10 +114,16 @@
 </head>
 <body>
 
-<audio id="mySong" loop>
-    <source src="https://drive.google.com/uc?export=download&id=13xuUhVt_GAO3viZmjFigwTvgIqKScZ3W" type="audio/mpeg">
+<audio id="mySong" loop preload="auto">
+    <source src="https://docs.google.com/uc?export=open&id=13xuUhVt_GAO3viZmjFigwTvgIqKScZ3W" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar musik.
 </audio>
-<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<div class="music-control">
+    <button class="music-btn" onclick="toggleMusic()" id="btnMusic">
+        <span id="music-icon">▶️</span> <span id="music-status">Play Music</span>
+    </button>
+</div>
 
 <header>
     <h1>Hi, Sayang! ❤️</h1>
@@ -165,7 +175,6 @@
 </footer>
 
 <script>
-    // 1. Variasi Pesan
     const messages = [
         "Kamu adalah alasan aku selalu ingin jadi lebih baik. ❤️",
         "Terima kasih sudah memilihku untuk menemanimu.",
@@ -182,9 +191,7 @@
         textElement.innerText = randomMsg;
     }
 
-    // 2. Countdown (Ganti tanggal di sini)
     const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
-
     setInterval(function() {
         const now = new Date().getTime();
         const diff = targetDate - now;
@@ -194,7 +201,6 @@
         document.getElementById("timer").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit!";
     }, 1000);
 
-    // 3. Efek Hati
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -207,13 +213,26 @@
     }
     setInterval(createHeart, 500);
 
-    // 4. Kontrol Musik
+    // Fungsi Kontrol Musik yang diperbaiki
     const song = document.getElementById("mySong");
+    const musicBtn = document.getElementById("btnMusic");
+    const musicIcon = document.getElementById("music-icon");
+    const musicStatus = document.getElementById("music-status");
+
     function toggleMusic() {
         if (song.paused) {
-            song.play();
+            song.play().then(() => {
+                musicIcon.innerText = "⏸️";
+                musicStatus.innerText = "Pause Music";
+                musicBtn.style.animation = "none"; // Berhenti berkedip setelah diputar
+            }).catch(error => {
+                console.log("Gagal memutar lagu: ", error);
+                alert("Klik 'Siapa saja yang memiliki link' di Google Drive kamu agar lagu bisa diputar!");
+            });
         } else {
             song.pause();
+            musicIcon.innerText = "▶️";
+            musicStatus.innerText = "Play Music";
         }
     }
 </script>
