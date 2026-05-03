@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kita ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-soft: #ffcad4;
+            --pink-bold: #f7a1c0;
+            --text-dark: #333333;
+            --white-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--white-bg); /* Konsep dominan putih yang elegan */
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Header Minimalis */
+        header {
+            padding: 40px 20px 20px 20px;
+            background: var(--white-bg);
+            position: relative;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            text-decoration: none;
+            color: var(--pink-bold);
+            font-weight: 600;
+            background: #fff9fa;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--pink-soft);
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { background: var(--pink-soft); color: white; }
+
+        h1 { 
+            font-family: 'Pacifico', cursive; 
+            color: var(--pink-bold); 
+            font-size: 2.5rem; 
+            margin: 20px 0 5px 0; 
+        }
+
+        p.subtitle {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+
+        /* Grid Galeri Elegan */
+        .gallery-container {
+            padding: 0 20px 50px 20px;
+            max-width: 600px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(247, 161, 192, 0.2);
+        }
+
+        /* Lightbox (Foto Membesar) */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: var(--pink-bold);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="btn-back">⬅ Kembali</a>
+    <h1>Our Gallery</h1>
+    <p class="subtitle">Setiap foto punya cerita cantiknya sendiri.</p>
+</header>
+
+<div class="gallery-container">
+    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 1">
+    
+    <img src="https://images.unsplash.com/photo-1522673607200-164883eecd4c?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 2">
+    
+    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 3">
+    
+    <img src="https://images.unsplash.com/photo-1606248897732-2c5ffe759c04?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 4">
+    
+    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 5">
+    
+    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=600" class="gallery-item" onclick="openLightbox(this.src)" alt="Kenangan 6">
+</div>
+
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="Foto Membesar">
+    <button class="close-btn" onclick="closeLightbox()">Tutup Foto</button>
+</div>
+
+<script>
+    // Fungsi untuk membuka foto agar full screen
+    function openLightbox(imageSrc) {
+        document.getElementById('lightbox-img').src = imageSrc;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    // Fungsi untuk menutup foto
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
