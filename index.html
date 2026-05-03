@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-soft: #ffcad4;
+            --pink-bold: #f7a1c0;
+            --white-clean: #ffffff;
+            --text-dark: #4a4e69;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fff9fa;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Efek Hati Berjatuhan */
+        .heart {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 999;
+            user-select: none;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh); }
+        }
+
+        header {
+            padding: 60px 20px;
+            background: var(--white-clean);
+            border-radius: 0 0 40px 40px;
+            box-shadow: 0 10px 30px rgba(255, 175, 204, 0.1);
+        }
+
+        h1 { font-family: 'Pacifico', cursive; color: var(--pink-bold); font-size: 2.2rem; margin: 0; }
+
+        .container { padding: 20px; max-width: 450px; margin: auto; }
+
+        /* Countdown Style */
+        .countdown-box {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--pink-soft);
+        }
+        .timer { font-weight: bold; font-size: 1.2rem; color: var(--pink-bold); }
+
+        /* Card Style */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 175, 204, 0.2);
+        }
+
+        /* Foto Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .photo-grid img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .photo-grid img:active { transform: scale(0.95); }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--pink-bold);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(247, 161, 192, 0.4);
+            z-index: 1000;
+        }
+
+        /* Love Message */
+        #love-text { display: block; min-height: 60px; margin-bottom: 15px; font-style: italic; }
+        .btn-main {
+            background: var(--pink-bold);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        ul { text-align: left; padding-left: 15px; }
+        li { margin-bottom: 10px; list-style: '✨ '; }
+
+    </style>
+</head>
+<body>
+
+<audio id="mySong" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<header>
+    <h1>Hi, Sayang! ❤️</h1>
+    <p>Every day is a gift with you.</p>
+</header>
+
+<div class="container">
+    <div class="countdown-box">
+        <p>Menuju Hari Spesial Kita 🥂</p>
+        <div id="timer" class="timer">Loading...</div>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top:0">📸 Our Moments</h3>
+        <div class="photo-grid">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400" alt="Moment 1">
+            <img src="https://images.unsplash.com/photo-1522673607200-164883eecd4c?q=80&w=400" alt="Moment 2">
+        </div>
+    </div>
+
+    <div class="card">
+        <span id="love-text">Klik tombol buat baca pesan hari ini..</span>
+        <button class="btn-main" onclick="generateLove()">Baca Pesan ✨</button>
+    </div>
+
+    <div class="card">
+        <h3 style="color: var(--pink-bold)">📅 Next Date Ideas</h3>
+        <ul>
+            <li>Nyobain cafe baru yang estetik ☕</li>
+            <li>Masak bareng di rumah 🍳</li>
+            <li>Cari sunset bareng 🌅</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3 style="color: var(--pink-bold)">📜 Little Reminders</h3>
+        <ul>
+            <li>Jangan lupa minum air putih yang banyak!</li>
+            <li>Kabari aku kalau kamu lagi ngerasa capek ya.</li>
+            <li>Komunikasi itu nomor satu, jangan dipendem sendiri.</li>
+            <li>I'm always proud of you, no matter what.</li>
+        </ul>
+    </div>
+</div>
+
+<footer style="padding: 40px; font-size: 0.7rem; opacity: 0.6;">
+    Forever & Always with You | 2026
+</footer>
+
+<script>
+    // 1. Pesan Romantis Variasi
+    const messages = [
+        "Kamu itu alasan aku semangat bangun tiap pagi. ❤️",
+        "Makasih ya udah jadi bagian paling indah di hidupku.",
+        "Don't forget to smile today, it looks beautiful on you!",
+        "Lagi apa? Aku cuma mau bilang kalau aku sayang banget sama kamu.",
+        "Semangat ya kerjanya! Nanti kita makan enak bareng.",
+        "You are my favorite human in the whole world! 🌍",
+        "Kalau dunia lagi berisik, inget ya, aku bakal selalu jadi tempat teduhmu."
+    ];
+
+    function generateLove() {
+        const textElement = document.getElementById('love-text');
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        textElement.innerText = randomMsg;
+    }
+
+    // 2. Countdown Anniversary (Ganti tanggal di sini)
+    const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
+
+    setInterval(function() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        
+        document.getElementById("timer").innerHTML = days + " Hari " + hours + " Jam " + minutes + " Menit lagi!";
+    }, 1000);
+
+    // 3. Efek Hati Berjatuhan
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        heart.style.opacity = Math.random();
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 5000);
+    }
+    setInterval(createHeart, 500);
+
+    // 4. Music Toggle
+    const song = document.getElementById("mySong");
+    function toggleMusic() {
+        return song.paused ? song.play() : song.pause();
+    }
+</script>
+
+</body>
+</html>
