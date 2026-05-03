@@ -65,7 +65,7 @@
             border: 1px solid rgba(255, 175, 204, 0.2);
         }
 
-        /* Tombol Musik yang Lebih Jelas */
+        /* Tombol Musik */
         .music-control {
             position: fixed;
             bottom: 25px;
@@ -115,7 +115,7 @@
 <body>
 
 <audio id="mySong" loop preload="auto">
-    <source src="https://docs.google.com/uc?export=open&id=13xuUhVt_GAO3viZmjFigwTvgIqKScZ3W" type="audio/mpeg">
+    <source src="lagu.mp3" type="audio/mpeg">
     Browser kamu tidak mendukung pemutar musik.
 </audio>
 
@@ -213,7 +213,7 @@
     }
     setInterval(createHeart, 500);
 
-    // Fungsi Kontrol Musik yang diperbaiki
+    // Fungsi Kontrol Musik
     const song = document.getElementById("mySong");
     const musicBtn = document.getElementById("btnMusic");
     const musicIcon = document.getElementById("music-icon");
@@ -224,10 +224,9 @@
             song.play().then(() => {
                 musicIcon.innerText = "⏸️";
                 musicStatus.innerText = "Pause Music";
-                musicBtn.style.animation = "none"; // Berhenti berkedip setelah diputar
+                musicBtn.style.animation = "none";
             }).catch(error => {
                 console.log("Gagal memutar lagu: ", error);
-                alert("Klik 'Siapa saja yang memiliki link' di Google Drive kamu agar lagu bisa diputar!");
             });
         } else {
             song.pause();
